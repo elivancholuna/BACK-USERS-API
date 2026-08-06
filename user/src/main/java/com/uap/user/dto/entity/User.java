@@ -38,6 +38,9 @@ public class User {
     @Column(name = "updated_date", nullable = false)
     private OffsetDateTime updateDate;
 
+    @Column(name = "image_url", nullable = true, length = 255)
+    private String imageUrl;
+
     @PrePersist
     private void preCreate() {
         this.externalId = UUID.randomUUID();

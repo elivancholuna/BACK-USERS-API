@@ -42,6 +42,6 @@ public class AuthServiceImpl implements AuthService {
         log.info("Token generado: {}", token);
 
         // 4. Retornar la respuesta exitosa
-        return new LoginResponse(token, user.getEmail());
+        return new LoginResponse(token, user.getEmail(), user.getFullName(), user.getImageUrl());
     }
 }

@@ -5,7 +5,6 @@ import com.uap.user.dto.model.UserResponse;
 import com.uap.user.exception.NotFoundException;
 import com.uap.user.usecase.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,6 @@ public class UserController {
     
     private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }

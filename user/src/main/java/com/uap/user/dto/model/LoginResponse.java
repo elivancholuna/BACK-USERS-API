@@ -8,5 +8,7 @@ import lombok.Data;
 public class LoginResponse {
     private String token;
     private String email;
+    private String name;
+    private String urlProfile;
     // Puedes agregar más campos como: private List<String> roles;
 }

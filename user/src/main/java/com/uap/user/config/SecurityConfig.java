@@ -33,7 +33,8 @@ public class SecurityConfig {
 
                 // Reglas de acceso a URLs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Login público para poder sacar el token
+                        .requestMatchers("/api/auth/**").permitAll() //
+                        .requestMatchers("/api/users/**").permitAll() //// Login público para poder sacar el token
                         .anyRequest().authenticated()               // CUALQUIER otro endpoint requerirá token válido
                 )
 
