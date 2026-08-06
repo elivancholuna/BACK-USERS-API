@@ -1,5 +1,6 @@
 package com.uap.user.controller;
 
+import com.uap.user.dto.model.UserApiResponse;
 import com.uap.user.dto.model.UserRequest;
 import com.uap.user.dto.model.UserResponse;
 import com.uap.user.exception.NotFoundException;
@@ -30,6 +31,17 @@ public class UserController {
         // Es una buena práctica envolver la respuesta en un ResponseEntity
         // para manejar correctamente los estados HTTP (en este caso, 200 OK)
         return ResponseEntity.ok(userService.findAllUsers(Optional.empty()));
+    }
+
+    /*
+     * Endpoint para obtener la lista completa de usuarios.
+     * Ruta: GET http://localhost:8080/api/users/list
+     */
+    @GetMapping("/list/api/{page}")
+    public ResponseEntity<UserApiResponse> getAllUsersApi(@PathVariable Integer page) {
+        // Es una buena práctica envolver la respuesta en un ResponseEntity
+        // para manejar correctamente los estados HTTP (en este caso, 200 OK)
+        return ResponseEntity.ok(userService.search(page.intValue()));
     }
 
     @PostMapping
