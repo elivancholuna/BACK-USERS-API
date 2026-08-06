@@ -3,6 +3,7 @@ package com.uap.user.controller;
 import com.uap.user.dto.model.UserResponse;
 import com.uap.user.usecase.UserService;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -32,12 +33,25 @@ public class UserControllerTest {
     @DisplayName("Test nro 1 - get user")
     void getAllUsers_success() {
         when(userService
-            .findAllUsers(Optional.empty()))
+            .findAllUsers(any()))
             .thenReturn(List.of());
-         
+
         ResponseEntity<List<UserResponse>> response = controller.getAllUsers();
 
+        verify(userService).findAllUsers(any());
         assertThat(response.getBody().isEmpty()).isTrue();
 
+
     }
+
+    @Test
+    void getAllUser_Fail(){
+        when(userService.findAllUsers(any())).thenThrow(RuntimeException.class);
+
+        ResponseEntity<List<UserResponse>> response = controller.getAllUsers();
+
+
+    }
+
+    //J+,
 }

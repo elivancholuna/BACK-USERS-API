@@ -1,7 +1,9 @@
 package com.uap.user.usecase.impl;
 
+import com.uap.user.client.UserApiRepository;
 import com.uap.user.dto.entity.User;
 import com.uap.user.dto.mapper.UserMapper;
+import com.uap.user.dto.model.UserApiResponse;
 import com.uap.user.dto.model.UserRequest;
 import com.uap.user.dto.model.UserResponse;
 import com.uap.user.exception.NotFoundException;
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final UserApiRepository userApiRepository;
     /**
      * Busca y devuelve todos los usuarios de la base de datos.
      * @return Lista de entidades User
@@ -74,6 +77,11 @@ public class UserServiceImpl implements UserService {
     public void delete(String id) {
         log.info("Eliminando el usuario con id: {}", id);
         userRepository.deleteById(UUID.fromString(id));
+    }
+
+    @Override
+    public UserApiResponse search(int page) {
+        return userApiRepository.getUsers(page);
     }
 
     private List<User> findUsers(Optional<String> fullName) {
